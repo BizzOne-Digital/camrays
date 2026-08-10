@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { getProducts } from '@/lib/products';
 
-export default function HomePage() {
+export const dynamic = 'force-dynamic';
+
+export default async function HomePage() {
+  const featuredProducts = (await getProducts()).slice(0, 4);
+
   return (
     <>
       {/* ====== HERO SECTION ====== */}
@@ -156,35 +161,36 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '28px' }}>
-            {[
-              { img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80', name: 'Classic Hair Pomade', price: '$12', category: 'Hair Care', badge: 'Bestseller' },
-              { img: 'https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=500&q=80', name: 'Nourishing Skin Butter', price: '$15', category: 'Skin Care', badge: 'Popular' },
-              { img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80', name: 'Healing Lip Balm', price: '$8', category: 'Lip Care', badge: 'New' },
-              { img: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80', name: 'Scalp Revival Treatment', price: '$18', category: 'Scalp Care', badge: '' },
-            ].map(({ img, name, price, category, badge }) => (
-              <div key={name} className="card-hover" style={{ background: 'white', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
-                <div style={{ position: 'relative', aspectRatio: '1.1', overflow: 'hidden' }}>
-                  <Image src={img} alt={name} fill style={{ objectFit: 'cover', transition: 'transform 0.5s ease' }} />
-                  {badge && (
-                    <div style={{ position: 'absolute', top: '14px', left: '14px', background: 'var(--crimson)', color: 'white', fontSize: '10px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 12px', borderRadius: '100px' }}>
-                      {badge}
+          {featuredProducts.length === 0 ? (
+            <p style={{ color: 'var(--warm-gray)', textAlign: 'center', padding: '40px 0' }}>
+              No products yet. Add some from the admin panel.
+            </p>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '28px' }}>
+              {featuredProducts.map(({ id, img, name, price, category, badge }) => (
+                <div key={id} className="card-hover" style={{ background: 'white', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
+                  <div style={{ position: 'relative', aspectRatio: '1.1', overflow: 'hidden' }}>
+                    <Image src={img} alt={name} fill style={{ objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                    {badge && (
+                      <div style={{ position: 'absolute', top: '14px', left: '14px', background: 'var(--crimson)', color: 'white', fontSize: '10px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 12px', borderRadius: '100px' }}>
+                        {badge}
+                      </div>
+                    )}
+                  </div>
+                  <div style={{ padding: '20px 24px 24px' }}>
+                    <div style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--warm-gray)', marginBottom: '6px' }}>{category}</div>
+                    <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '18px', fontWeight: '600', color: 'var(--charcoal)', marginBottom: '16px' }}>{name}</h3>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '22px', fontWeight: '700', color: 'var(--crimson)' }}>${price}</span>
+                      <Link href="/products" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--charcoal)', color: 'white', padding: '10px 18px', fontSize: '12px', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '6px', transition: 'background 0.2s' }}>
+                        Order
+                      </Link>
                     </div>
-                  )}
-                </div>
-                <div style={{ padding: '20px 24px 24px' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--warm-gray)', marginBottom: '6px' }}>{category}</div>
-                  <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '18px', fontWeight: '600', color: 'var(--charcoal)', marginBottom: '16px' }}>{name}</h3>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '22px', fontWeight: '700', color: 'var(--crimson)' }}>{price}</span>
-                    <Link href="/products" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--charcoal)', color: 'white', padding: '10px 18px', fontSize: '12px', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '6px', transition: 'background 0.2s' }}>
-                      Order
-                    </Link>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

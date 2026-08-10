@@ -28,7 +28,10 @@
       "Bash(curl -s -b /tmp/c.txt http://localhost:3001/api/products)",
       "Bash(curl -s http://localhost:3001/about)",
       "Bash(curl -s http://localhost:3001/)",
-      "Bash(git init *)"
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(curl -s http://localhost:3001/ -o /tmp/home.html -w \"%{http_code}\\\\n\")"
     ],
     "additionalDirectories": [
       "\\tmp"
