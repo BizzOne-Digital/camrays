@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(taskkill //F //IM node.exe //FI \"WINDOWTITLE eq*\")",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(taskkill //F //PID 18552)",
+      "Bash(taskkill //F //PID 21724)",
+      "Bash(taskkill //F //PID 22476)",
+      "Bash(openssl rand *)",
+      "Bash(MONGODB_URI=\"mongodb://localhost:27017/dummy\" AUTH_SECRET=\"dummy\" CLOUDINARY_CLOUD_NAME=\"dummy\" CLOUDINARY_API_KEY=\"dummy\" CLOUDINARY_API_SECRET=\"dummy\" npm run build)",
+      "Bash(node scripts/seed-admin.mjs)",
+      "Bash(curl -s http://localhost:3000/api/auth/csrf -c /tmp/cookies.txt)",
+      "Bash(curl -s -b /tmp/cookies.txt http://localhost:3000/api/auth/session)",
+      "Bash(curl -s -b /tmp/cookies.txt -X POST http://localhost:3000/api/products -H 'Content-Type: application/json' -d '{\"name\":\"Test Pomade\",\"category\":\"Hair Care\",\"price\":12,\"desc\":\"Test product for verifying dynamic flow.\",\"img\":\"https://res.cloudinary.com/demo/image/upload/sample.jpg\",\"badge\":\"New\",\"uses\":[\"Testing\"]}' -w '\\\\nHTTP_CODE:%{http_code}\\\\n')",
+      "Bash(curl -s http://localhost:3000/products)",
+      "Bash(curl -s -b /tmp/cookies.txt http://localhost:3000/admin/products)",
+      "Bash(curl -s -b /tmp/cookies.txt http://localhost:3000/admin/dashboard)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\\\\n\" http://localhost:3000/admin/dashboard)",
+      "Bash(curl -s -b /tmp/cookies.txt -X DELETE http://localhost:3000/api/products/6a79f6680024c6988f5ca037 -w \"\\\\n%{http_code}\\\\n\")",
+      "Bash(taskkill //F //PID 6888)",
+      "Bash(rm -f /tmp/cookies.txt)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3001/)",
+      "Bash(curl -s -b /tmp/cookies2.txt -X POST http://localhost:3001/api/products -H 'Content-Type: application/json' -d '{\"name\":\"Verify Pomade\",\"category\":\"Hair Care\",\"price\":10,\"desc\":\"Verification run.\",\"img\":\"https://res.cloudinary.com/demo/image/upload/sample.jpg\",\"badge\":\"\",\"uses\":[]}' -w '\\\\nHTTP_CODE:%{http_code}\\\\n')",
+      "Bash(curl -s http://localhost:3001/products)",
+      "Bash(curl -s -o /dev/null -w \"unauthenticated admin access -> %{http_code}\\\\n\" http://localhost:3001/admin/dashboard)",
+      "Bash(curl -s -b /tmp/cookies2.txt -X DELETE http://localhost:3001/api/products/6a7a1fe8db055663bc13cac2 -w \"\\\\n%{http_code}\\\\n\")",
+      "Bash(rm -f /tmp/cookies2.txt /tmp/cookies.txt)",
+      "Bash(curl -s -b /tmp/c.txt http://localhost:3001/api/products)",
+      "Bash(curl -s http://localhost:3001/about)",
+      "Bash(curl -s http://localhost:3001/)",
+      "Bash(git init *)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
+    ]
+  }
+}
