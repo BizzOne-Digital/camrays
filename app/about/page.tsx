@@ -25,7 +25,7 @@ export default function AboutPage() {
 
       {/* Story Section */}
       <section style={{ padding: '100px 0', background: 'var(--warm-white)' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+        <div className="about-story-grid" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
           <div>
             <div className="section-label" style={{ marginBottom: '12px' }}>How It Began</div>
             <h2 className="section-title" style={{ marginBottom: '20px' }}>Camille&apos;s<br /><em style={{ color: 'var(--crimson)', fontStyle: 'italic' }}>Journey</em></h2>
@@ -56,6 +56,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        <style>{`@media(max-width:768px){.about-story-grid{grid-template-columns:1fr !important;gap:40px !important;}}`}</style>
       </section>
 
       {/* Values */}
