@@ -11,7 +11,7 @@ export default function Footer() {
         {/* Brand Column */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-            <Image src="/logo.png" alt="CamRay's Prodigious Pomade" width={50} height={50} style={{ height: '50px', width: '50px', objectFit: 'contain' }} />
+            <Image src="/logo.png" alt="CamRay's Prodigious Pomade" width={72} height={72} style={{ height: '72px', width: '72px', objectFit: 'contain' }} />
             <div>
               <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: '700', fontSize: '18px', color: 'white' }}>CamRay&apos;s</div>
               <div style={{ fontSize: '9px', color: 'var(--gold)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Prodigious Pomade</div>

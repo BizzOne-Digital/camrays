@@ -11,7 +11,7 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <section style={{ position: 'relative', height: '60vh', minHeight: '480px', background: 'var(--charcoal)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        <Image src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1400&q=80" alt="Natural ingredients" fill style={{ objectFit: 'cover', opacity: 0.3 }} />
+        <Image src="/about.png" alt="Natural ingredients" fill style={{ objectFit: 'cover', opacity: 0.3 }} />
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '0 32px' }}>
           <div className="section-label" style={{ marginBottom: '16px' }}>Our Story</div>
           <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: '800', color: 'white', lineHeight: '1.15' }}>
@@ -28,10 +28,10 @@ export default function AboutPage() {
         <div className="about-story-grid" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
           <div>
             <div className="section-label" style={{ marginBottom: '12px' }}>How It Began</div>
-            <h2 className="section-title" style={{ marginBottom: '20px' }}>Camille&apos;s<br /><em style={{ color: 'var(--crimson)', fontStyle: 'italic' }}>Journey</em></h2>
+            <h2 className="section-title" style={{ marginBottom: '20px' }}>The Founder&apos;s<br /><em style={{ color: 'var(--crimson)', fontStyle: 'italic' }}>Journey</em></h2>
             <div className="divider" />
             <p style={{ fontSize: '16px', color: 'var(--warm-gray)', lineHeight: '1.95', marginTop: '24px', marginBottom: '20px' }}>
-              Utilizing her grandmother&apos;s recipe of combining oils, butters, and herbs, Camille Rojas created an amazing treatment for hair, scalp, skin, and lips. For years, she shared this product with only a few people — close friends and family who saw how well it worked.
+              Utilizing her grandmother&apos;s recipe of combining oils, butters, and herbs, our founder created an amazing treatment for hair, scalp, skin, and lips. For years, she shared this product with only a few people — close friends and family who saw how well it worked.
             </p>
             <p style={{ fontSize: '16px', color: 'var(--warm-gray)', lineHeight: '1.95', marginBottom: '20px' }}>
               Then the requests started. Word spread through families, communities, and friend groups. With the encouragement of a dear friend, what had been a personal care secret became something the world deserved to know about.
@@ -49,9 +49,11 @@ export default function AboutPage() {
               <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
                 <Image src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=300&q=80" alt="Herbs" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
-              <div style={{ borderRadius: '16px', background: 'var(--crimson)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', padding: '24px' }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5"><path d="M4.5 12.5l4 4L20 7"/></svg>
-                <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '16px', fontWeight: '600', color: 'white', marginTop: '12px' }}>Grandma&apos;s Approved Recipe</div>
+              <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
+                <Image src="/grandmother.jpg" alt="Grandmother" fill style={{ objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(139,26,26,0.85), rgba(139,26,26,0.1))', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '16px' }}>
+                  <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '15px', fontWeight: '600', color: 'white', textAlign: 'center' }}>Grandma&apos;s Approved Recipe</div>
+                </div>
               </div>
             </div>
           </div>
@@ -96,12 +98,12 @@ export default function AboutPage() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '20px' }}>
             {[
-              { name: 'Shea Butter', benefit: 'Deep moisture', img: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=300&q=80' },
-              { name: 'Coconut Oil', benefit: 'Strengthens & softens', img: 'https://images.unsplash.com/photo-1526399232581-2ab5608b6336?w=300&q=80' },
-              { name: 'Jojoba Oil', benefit: 'Scalp balance', img: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=300&q=80' },
-              { name: 'Castor Oil', benefit: 'Promotes growth', img: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=300&q=80' },
-              { name: 'Tea Tree', benefit: 'Anti-bacterial', img: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=300&q=80' },
-              { name: 'Herbs & Botanicals', benefit: 'Healing properties', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&q=80' },
+              { name: 'Shea Butter', benefit: 'Deep moisture', img: 'https://images.unsplash.com/photo-1573812461383-e5f8b759d12e?q=80' },
+              { name: 'Coconut Oil', benefit: 'Strengthens & softens', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80' },
+              { name: 'Jojoba Oil', benefit: 'Scalp balance', img: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=300&q=80' },
+              { name: 'Castor Oil', benefit: 'Promotes growth', img: 'https://images.unsplash.com/photo-1596470663178-dc2df28026f7?q=80' },
+              { name: 'Tea Tree', benefit: 'Anti-bacterial', img: 'https://images.unsplash.com/photo-1567922045116-2a00fae2ed03?q=80' },
+              { name: 'Herbs & Botanicals', benefit: 'Healing properties', img: 'https://images.unsplash.com/photo-1514733670139-4d87a1941d55?q=80' },
             ].map(({ name, benefit, img }) => (
               <div key={name} className="card-hover" style={{ borderRadius: '16px', overflow: 'hidden', background: 'white', border: '1px solid rgba(0,0,0,0.06)' }}>
                 <div style={{ aspectRatio: '1', overflow: 'hidden' }}>

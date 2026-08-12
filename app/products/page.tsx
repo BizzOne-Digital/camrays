@@ -16,7 +16,7 @@ export default async function ProductsPage() {
     <>
       {/* Hero */}
       <section style={{ position: 'relative', height: '52vh', minHeight: '420px', background: 'var(--charcoal)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        <Image src="https://images.unsplash.com/photo-1598662779094-110c2bad80b5?w=1400&q=80" alt="Products" fill style={{ objectFit: 'cover', opacity: 0.25 }} />
+        <Image src="/about.png" alt="Products" fill style={{ objectFit: 'cover', opacity: 0.25 }} />
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '0 32px' }}>
           <div className="section-label" style={{ marginBottom: '16px' }}>Our Products</div>
           <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: '800', color: 'white' }}>

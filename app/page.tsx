@@ -18,7 +18,7 @@ export default async function HomePage() {
         {/* Background Image */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image
-            src="/hero.png"
+            src="/hero2.png"
             alt="CamRay's Prodigious Pomade"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}

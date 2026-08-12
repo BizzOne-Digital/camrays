@@ -90,7 +90,7 @@ export default function ContactPage() {
                 </div>
                 <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '28px', fontWeight: '700', color: 'var(--charcoal)', marginBottom: '16px' }}>Message Sent!</h3>
                 <p style={{ fontSize: '15px', color: 'var(--warm-gray)', lineHeight: '1.8', marginBottom: '32px' }}>
-                  Thank you for reaching out! Camille will get back to you within 24–48 hours to discuss your order.
+                  Thank you for reaching out! Our founder will get back to you within 24–48 hours to discuss your order.
                 </p>
                 <button onClick={() => setSubmitted(false)} className="btn-primary">Send Another Message</button>
               </div>

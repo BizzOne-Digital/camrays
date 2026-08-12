@@ -49,7 +49,7 @@ export default function Navbar() {
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Logo */}
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Image src="/logo.png" alt="CamRay's Prodigious Pomade" width={44} height={44} style={{ height: '44px', width: '44px', objectFit: 'contain' }} priority />
+          <Image src="/logo.png" alt="CamRay's Prodigious Pomade" width={64} height={64} style={{ height: '64px', width: '64px', objectFit: 'contain' }} priority />
           <div>
             <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: '700', color: iconColor, fontSize: '16px', lineHeight: 1 }}>CamRay&apos;s</div>
             <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', color: 'var(--gold)', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>Prodigious Pomade</div>

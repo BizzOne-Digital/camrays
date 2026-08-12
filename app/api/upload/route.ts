@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
 
   const formData = await req.formData();
   const file = formData.get('file');
+  const folder = formData.get('folder');
 
   if (!file || !(file instanceof Blob)) {
     return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const result = await cloudinary.uploader.upload(base64, {
-      folder: 'camrays/products',
+      folder: typeof folder === 'string' && folder ? folder : 'camrays/products',
     });
     return NextResponse.json({ url: result.secure_url });
   } catch {
