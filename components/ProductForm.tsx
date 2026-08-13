@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { PlainProduct } from '@/lib/products';
 
+type VariantState = { size: string; price: string };
+
 type FormState = {
   name: string;
   category: string;
@@ -30,9 +32,17 @@ export default function ProductForm({ productId, initial }: { productId?: string
         }
       : emptyForm
   );
+  const [variants, setVariants] = useState<VariantState[]>(
+    initial?.variants?.length ? initial.variants.map((v) => ({ size: v.size, price: String(v.price) })) : []
+  );
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+
+  const addVariant = () => setVariants((v) => [...v, { size: '', price: '' }]);
+  const removeVariant = (index: number) => setVariants((v) => v.filter((_, i) => i !== index));
+  const updateVariant = (index: number, field: keyof VariantState, value: string) =>
+    setVariants((v) => v.map((row, i) => (i === index ? { ...row, [field]: value } : row)));
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -64,6 +74,15 @@ export default function ProductForm({ productId, initial }: { productId?: string
       return;
     }
 
+    const cleanVariants = variants
+      .filter((v) => v.size.trim() && v.price.trim())
+      .map((v) => ({ size: v.size.trim(), price: parseFloat(v.price) }));
+
+    if (cleanVariants.some((v) => Number.isNaN(v.price))) {
+      setError('Each variant needs a valid price.');
+      return;
+    }
+
     setSaving(true);
     setError('');
 
@@ -75,6 +94,7 @@ export default function ProductForm({ productId, initial }: { productId?: string
       img: form.img,
       badge: form.badge,
       uses: form.uses.split(',').map((u) => u.trim()).filter(Boolean),
+      variants: cleanVariants,
     };
 
     const res = await fetch(productId ? `/api/products/${productId}` : '/api/products', {
@@ -98,7 +118,7 @@ export default function ProductForm({ productId, initial }: { productId?: string
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '520px' }}>
       <input required placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} style={inputStyle} />
       <input required placeholder="Category (e.g. Hair Care)" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} style={inputStyle} />
-      <input required type="number" step="0.01" placeholder="Price" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} style={inputStyle} />
+      <input required type="number" step="0.01" placeholder="Price (base / starting price)" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} style={inputStyle} />
       <textarea required placeholder="Description" value={form.desc} onChange={(e) => setForm({ ...form, desc: e.target.value })} rows={3} style={inputStyle} />
       <div>
         <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: 'var(--charcoal)', marginBottom: '8px' }}>
@@ -113,6 +133,24 @@ export default function ProductForm({ productId, initial }: { productId?: string
       </div>
       <input placeholder="Badge (optional, e.g. Bestseller)" value={form.badge} onChange={(e) => setForm({ ...form, badge: e.target.value })} style={inputStyle} />
       <input placeholder="Uses, comma separated" value={form.uses} onChange={(e) => setForm({ ...form, uses: e.target.value })} style={inputStyle} />
+
+      <div>
+        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: 'var(--charcoal)', marginBottom: '8px' }}>
+          Sizes / Variants (optional — e.g. 3oz $10, 8oz $20)
+        </label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {variants.map((v, i) => (
+            <div key={i} style={{ display: 'flex', gap: '8px' }}>
+              <input placeholder="Size (e.g. 3oz)" value={v.size} onChange={(e) => updateVariant(i, 'size', e.target.value)} style={{ ...inputStyle, flex: 2 }} />
+              <input type="number" step="0.01" placeholder="Price" value={v.price} onChange={(e) => updateVariant(i, 'price', e.target.value)} style={{ ...inputStyle, flex: 1 }} />
+              <button type="button" onClick={() => removeVariant(i)} style={{ background: 'none', border: 'none', color: 'var(--warm-gray)', cursor: 'pointer', padding: '0 8px' }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button type="button" onClick={addVariant} style={{ marginTop: '8px', fontSize: '13px', color: 'var(--crimson)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: '600' }}>
+          + Add Size Option
+        </button>
+      </div>
 
       {error && <p style={{ color: 'var(--crimson)', fontSize: '14px' }}>{error}</p>}
 

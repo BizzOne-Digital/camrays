@@ -10,12 +10,19 @@ const categories = ['All', 'Hair Care', 'Skin Care', 'Scalp Care', 'Lip Care'];
 export default function ProductsGrid({ products }: { products: PlainProduct[] }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [added, setAdded] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<Record<string, string>>({});
   const { addItem } = useCart();
 
   const filtered = activeCategory === 'All' ? products : products.filter((p) => p.category === activeCategory);
 
   const handleAddToCart = (product: PlainProduct) => {
-    addItem({ productId: product.id, name: product.name, price: product.price });
+    if (product.variants.length) {
+      const size = selectedSize[product.id] ?? product.variants[0].size;
+      const variant = product.variants.find((v) => v.size === size) ?? product.variants[0];
+      addItem({ productId: product.id, name: product.name, price: variant.price, size: variant.size });
+    } else {
+      addItem({ productId: product.id, name: product.name, price: product.price });
+    }
     setAdded(product.id);
     setTimeout(() => setAdded(null), 1500);
   };
@@ -56,7 +63,9 @@ export default function ProductsGrid({ products }: { products: PlainProduct[] })
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '32px' }}>
               {filtered.map((product) => {
-                const { id, name, category, price, desc, img, badge, uses } = product;
+                const { id, name, category, price, desc, img, badge, uses, variants } = product;
+                const currentSize = selectedSize[id] ?? variants[0]?.size;
+                const currentPrice = variants.length ? (variants.find((v) => v.size === currentSize)?.price ?? variants[0].price) : price;
                 return (
                   <div key={id} className="card-hover" style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column' }}>
                     <div style={{ position: 'relative', aspectRatio: '1.2', overflow: 'hidden' }}>
@@ -67,7 +76,7 @@ export default function ProductsGrid({ products }: { products: PlainProduct[] })
                         </div>
                       )}
                       <div style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(255,255,255,0.95)', padding: '6px 14px', borderRadius: '100px' }}>
-                        <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '15px', fontWeight: '700', color: 'var(--crimson)' }}>${price}</span>
+                        <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '15px', fontWeight: '700', color: 'var(--crimson)' }}>{variants.length ? `From $${Math.min(...variants.map((v) => v.price))}` : `$${currentPrice}`}</span>
                       </div>
                     </div>
                     <div style={{ padding: '24px 28px 28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -79,6 +88,20 @@ export default function ProductsGrid({ products }: { products: PlainProduct[] })
                           <span key={use} style={{ fontSize: '11px', padding: '4px 10px', background: 'var(--off-white)', color: 'var(--warm-gray)', borderRadius: '100px', fontWeight: '500' }}>{use}</span>
                         ))}
                       </div>
+                      {variants.length > 0 && (
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                          <select
+                            value={currentSize}
+                            onChange={(e) => setSelectedSize((s) => ({ ...s, [id]: e.target.value }))}
+                            style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.15)', fontSize: '13px', flex: 1, marginRight: '12px' }}
+                          >
+                            {variants.map((v) => (
+                              <option key={v.size} value={v.size}>{v.size} — ${v.price}</option>
+                            ))}
+                          </select>
+                          <span style={{ fontFamily: 'Playfair Display, serif', fontWeight: '700', color: 'var(--crimson)', fontSize: '16px' }}>${currentPrice}</span>
+                        </div>
+                      )}
                       <button
                         onClick={() => handleAddToCart(product)}
                         className="btn-primary"

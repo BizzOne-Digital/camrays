@@ -16,5 +16,6 @@ export async function getProducts(): Promise<PlainProduct[]> {
     badge: p.badge,
     uses: p.uses,
     inStock: p.inStock,
+    variants: p.variants ?? [],
   }));
 }

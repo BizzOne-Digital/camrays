@@ -26,6 +26,7 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
           badge: product.badge,
           uses: product.uses,
           inStock: product.inStock,
+          variants: product.variants ?? [],
         }}
       />
     </div>

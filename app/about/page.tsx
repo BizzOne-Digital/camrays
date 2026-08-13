@@ -23,44 +23,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
-      <section style={{ padding: '100px 0', background: 'var(--warm-white)' }}>
-        <div className="about-story-grid" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
-          <div>
-            <div className="section-label" style={{ marginBottom: '12px' }}>How It Began</div>
-            <h2 className="section-title" style={{ marginBottom: '20px' }}>The Founder&apos;s<br /><em style={{ color: 'var(--crimson)', fontStyle: 'italic' }}>Journey</em></h2>
-            <div className="divider" />
-            <p style={{ fontSize: '16px', color: 'var(--warm-gray)', lineHeight: '1.95', marginTop: '24px', marginBottom: '20px' }}>
-              Utilizing her grandmother&apos;s recipe of combining oils, butters, and herbs, our founder created an amazing treatment for hair, scalp, skin, and lips. For years, she shared this product with only a few people — close friends and family who saw how well it worked.
-            </p>
-            <p style={{ fontSize: '16px', color: 'var(--warm-gray)', lineHeight: '1.95', marginBottom: '20px' }}>
-              Then the requests started. Word spread through families, communities, and friend groups. With the encouragement of a dear friend, what had been a personal care secret became something the world deserved to know about.
-            </p>
-            <p style={{ fontSize: '16px', color: 'var(--warm-gray)', lineHeight: '1.95', marginBottom: '36px' }}>
-              Today, every jar of CamRay&apos;s Prodigious Pomade carries the same love, the same recipe, and the same commitment to natural, organic care that started it all.
-            </p>
-            <Link href="/contact" className="btn-primary">Get In Touch</Link>
-          </div>
-          <div style={{ display: 'grid', gridTemplateRows: 'auto auto', gap: '20px' }}>
-            <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1.4' }}>
-              <Image src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=600&q=80" alt="Organic oils" width={600} height={430} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-              <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
-                <Image src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=300&q=80" alt="Herbs" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
-                <Image src="/grandmother.jpg" alt="Grandmother" fill style={{ objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(139,26,26,0.85), rgba(139,26,26,0.1))', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '16px' }}>
-                  <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '15px', fontWeight: '600', color: 'white', textAlign: 'center' }}>Grandma&apos;s Approved Recipe</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <style>{`@media(max-width:768px){.about-story-grid{grid-template-columns:1fr !important;gap:40px !important;}}`}</style>
-      </section>
-
       {/* Values */}
       <section style={{ padding: '100px 0', background: 'var(--charcoal)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px' }}>

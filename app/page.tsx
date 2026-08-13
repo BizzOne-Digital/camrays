@@ -108,7 +108,7 @@ export default async function HomePage() {
               With the help of a dear friend and the encouragement of loyal customers, CamRay&apos;s Prodigious Pomade was officially born. Every jar is handcrafted with patience, love, and the same recipe that started it all.
             </p>
             <Link href="/about" className="btn-primary">
-              Read Full Story
+              Learn More About Us
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
           </div>

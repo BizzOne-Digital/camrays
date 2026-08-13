@@ -13,6 +13,7 @@ const ProductInput = z.object({
   badge: z.string().optional(),
   uses: z.array(z.string()).optional(),
   inStock: z.boolean().optional(),
+  variants: z.array(z.object({ size: z.string().min(1), price: z.number().positive() })).optional(),
 });
 
 export async function GET() {

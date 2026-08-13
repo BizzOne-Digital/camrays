@@ -21,7 +21,7 @@ export default function CheckoutPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           customer: form,
-          items: items.map(({ productId, name, price, qty }) => ({ productId, name, price, qty })),
+          items: items.map(({ productId, name, price, qty, size }) => ({ productId, name, price, qty, size })),
         }),
       });
 
@@ -71,8 +71,8 @@ export default function CheckoutPage() {
 
         <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid rgba(0,0,0,0.06)', marginBottom: '32px' }}>
           {items.map((item) => (
-            <div key={item.productId} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', fontSize: '14px', color: 'var(--charcoal)' }}>
-              <span>{item.name} × {item.qty}</span>
+            <div key={`${item.productId}::${item.size ?? ''}`} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', fontSize: '14px', color: 'var(--charcoal)' }}>
+              <span>{item.name}{item.size ? ` (${item.size})` : ''} × {item.qty}</span>
               <span>${(item.price * item.qty).toFixed(2)}</span>
             </div>
           ))}
