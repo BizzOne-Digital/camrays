@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import type { PlainProduct } from '@/lib/products';
 
-const categories = ['All', 'Hair Care', 'Skin Care', 'Scalp Care', 'Lip Care'];
+const categories = ['All', 'Hair Care', 'Skin Care', 'Scalp Care', 'Lip Care', 'Shave Care'];
 
 export default function ProductsGrid({ products }: { products: PlainProduct[] }) {
   const [activeCategory, setActiveCategory] = useState('All');
