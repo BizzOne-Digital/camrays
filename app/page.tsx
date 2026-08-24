@@ -78,10 +78,10 @@ export default async function HomePage() {
           {/* Image Grid */}
           <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             <div style={{ borderRadius: '16px', overflow: 'hidden', gridRow: 'span 2', aspectRatio: '0.75' }}>
-              <Image src="/about1.png" alt="Natural oils" width={500} height={667} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image src="/aboutnew1.jpg" alt="CamRay's product collection" width={500} height={667} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
-              <Image src="/about2.png" alt="Herbs" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image src="/aboutnew2.jpg" alt="CamRay's product collection" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
               <Image src="/grandmother.jpg" alt="Grandmother" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

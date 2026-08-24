@@ -23,18 +23,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Product Showcase */}
-      <section style={{ padding: '80px 0', background: 'var(--warm-white)' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
-          <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1.2' }}>
-            <Image src="/aboutnew1.jpg" alt="CamRay's product collection" width={600} height={500} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
-          <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1.2' }}>
-            <Image src="/aboutnew2.jpg" alt="CamRay's product collection" width={600} height={500} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
-        </div>
-      </section>
-
       {/* Values */}
       <section style={{ padding: '100px 0', background: 'var(--charcoal)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px' }}>
