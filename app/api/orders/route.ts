@@ -18,6 +18,7 @@ const OrderInput = z.object({
         price: z.number().positive(),
         qty: z.number().int().positive(),
         size: z.string().optional(),
+        scent: z.string().optional(),
       })
     )
     .min(1),

@@ -7,17 +7,18 @@ export interface CartItem {
   price: number;
   qty: number;
   size?: string;
+  scent?: string;
 }
 
-function cartKey(item: { productId: string; size?: string }) {
-  return `${item.productId}::${item.size ?? ''}`;
+function cartKey(item: { productId: string; size?: string; scent?: string }) {
+  return `${item.productId}::${item.size ?? ''}::${item.scent ?? ''}`;
 }
 
 interface CartContextValue {
   items: CartItem[];
   addItem: (item: Omit<CartItem, 'qty'>, qty?: number) => void;
-  removeItem: (productId: string, size?: string) => void;
-  updateQty: (productId: string, qty: number, size?: string) => void;
+  removeItem: (productId: string, size?: string, scent?: string) => void;
+  updateQty: (productId: string, qty: number, size?: string, scent?: string) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
@@ -59,13 +60,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  const removeItem = (productId: string, size?: string) => {
-    setItems((prev) => prev.filter((i) => cartKey(i) !== cartKey({ productId, size })));
+  const removeItem = (productId: string, size?: string, scent?: string) => {
+    setItems((prev) => prev.filter((i) => cartKey(i) !== cartKey({ productId, size, scent })));
   };
 
-  const updateQty = (productId: string, qty: number, size?: string) => {
-    if (qty < 1) return removeItem(productId, size);
-    setItems((prev) => prev.map((i) => (cartKey(i) === cartKey({ productId, size }) ? { ...i, qty } : i)));
+  const updateQty = (productId: string, qty: number, size?: string, scent?: string) => {
+    if (qty < 1) return removeItem(productId, size, scent);
+    setItems((prev) => prev.map((i) => (cartKey(i) === cartKey({ productId, size, scent }) ? { ...i, qty } : i)));
   };
 
   const clearCart = () => setItems([]);

@@ -6,6 +6,7 @@ export interface IOrderItem {
   price: number;
   qty: number;
   size?: string;
+  scent?: string;
 }
 
 export interface IOrder {
@@ -29,6 +30,7 @@ const OrderItemSchema = new Schema<IOrderItem>(
     price: { type: Number, required: true },
     qty: { type: Number, required: true, min: 1 },
     size: { type: String },
+    scent: { type: String },
   },
   { _id: false }
 );

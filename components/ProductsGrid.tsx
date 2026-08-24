@@ -11,17 +11,19 @@ export default function ProductsGrid({ products }: { products: PlainProduct[] })
   const [activeCategory, setActiveCategory] = useState('All');
   const [added, setAdded] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<Record<string, string>>({});
+  const [selectedScent, setSelectedScent] = useState<Record<string, string>>({});
   const { addItem } = useCart();
 
   const filtered = activeCategory === 'All' ? products : products.filter((p) => p.category === activeCategory);
 
   const handleAddToCart = (product: PlainProduct) => {
+    const scent = product.uses.length > 1 ? (selectedScent[product.id] ?? product.uses[0]) : undefined;
     if (product.variants.length) {
       const size = selectedSize[product.id] ?? product.variants[0].size;
       const variant = product.variants.find((v) => v.size === size) ?? product.variants[0];
-      addItem({ productId: product.id, name: product.name, price: variant.price, size: variant.size });
+      addItem({ productId: product.id, name: product.name, price: variant.price, size: variant.size, scent });
     } else {
-      addItem({ productId: product.id, name: product.name, price: product.price });
+      addItem({ productId: product.id, name: product.name, price: product.price, scent });
     }
     setAdded(product.id);
     setTimeout(() => setAdded(null), 1500);
@@ -83,11 +85,28 @@ export default function ProductsGrid({ products }: { products: PlainProduct[] })
                       <div style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--crimson)', marginBottom: '8px' }}>{category}</div>
                       <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '20px', fontWeight: '700', color: 'var(--charcoal)', marginBottom: '12px' }}>{name}</h3>
                       <p style={{ fontSize: '14px', color: 'var(--warm-gray)', lineHeight: '1.8', marginBottom: '20px', flex: 1 }}>{desc}</p>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
-                        {uses.map((use) => (
-                          <span key={use} style={{ fontSize: '11px', padding: '4px 10px', background: 'var(--off-white)', color: 'var(--warm-gray)', borderRadius: '100px', fontWeight: '500' }}>{use}</span>
-                        ))}
-                      </div>
+                      {uses.length > 1 ? (
+                        <div style={{ marginBottom: '16px' }}>
+                          <label style={{ display: 'block', fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--warm-gray)', marginBottom: '6px' }}>
+                            Choose Scent
+                          </label>
+                          <select
+                            value={selectedScent[id] ?? uses[0]}
+                            onChange={(e) => setSelectedScent((s) => ({ ...s, [id]: e.target.value }))}
+                            style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.15)', fontSize: '13px', width: '100%' }}
+                          >
+                            {uses.map((use) => (
+                              <option key={use} value={use}>{use}</option>
+                            ))}
+                          </select>
+                        </div>
+                      ) : (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
+                          {uses.map((use) => (
+                            <span key={use} style={{ fontSize: '11px', padding: '4px 10px', background: 'var(--off-white)', color: 'var(--warm-gray)', borderRadius: '100px', fontWeight: '500' }}>{use}</span>
+                          ))}
+                        </div>
+                      )}
                       {variants.length > 0 && (
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
                           <select

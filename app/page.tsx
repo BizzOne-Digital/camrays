@@ -83,9 +83,8 @@ export default async function HomePage() {
             <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
               <Image src="/about2.png" alt="Herbs" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1', background: 'var(--crimson)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', padding: '24px', textAlign: 'center' }}>
-              <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '36px', fontWeight: '800', color: 'white' }}>5+</div>
-              <div style={{ fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)', marginTop: '6px' }}>Years of Crafting</div>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1' }}>
+              <Image src="/grandmother.jpg" alt="Grandmother" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             {/* Badge overlay */}
             <div style={{ position: 'absolute', bottom: '-20px', right: '-20px', width: '100px', height: '100px', borderRadius: '50%', background: 'var(--charcoal)', border: '3px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', padding: '12px' }}>

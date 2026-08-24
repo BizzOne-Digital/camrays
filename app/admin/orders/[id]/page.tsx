@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 interface OrderDetail {
   _id: string;
   customer: { name: string; phone: string; address: string };
-  items: { productId: string; name: string; price: number; qty: number; size?: string }[];
+  items: { productId: string; name: string; price: number; qty: number; size?: string; scent?: string }[];
   total: number;
   status: string;
   createdAt: string;
@@ -53,8 +53,8 @@ export default function AdminOrderDetailPage() {
       <div style={{ background: 'white', borderRadius: '14px', padding: '24px', border: '1px solid rgba(0,0,0,0.06)', marginBottom: '20px' }}>
         <h3 style={{ fontWeight: '700', marginBottom: '12px' }}>Items</h3>
         {order.items.map((item) => (
-          <div key={`${item.productId}::${item.size ?? ''}`} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}>
-            <span>{item.name}{item.size ? ` (${item.size})` : ''} × {item.qty}</span>
+          <div key={`${item.productId}::${item.size ?? ''}::${item.scent ?? ''}`} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}>
+            <span>{item.name}{item.size ? ` (${item.size})` : ''}{item.scent ? ` — ${item.scent}` : ''} × {item.qty}</span>
             <span>${(item.price * item.qty).toFixed(2)}</span>
           </div>
         ))}
