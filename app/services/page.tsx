@@ -33,7 +33,7 @@ export default function ServicesPage() {
               {
                 title: 'Custom Product Orders',
                 desc: 'Have a specific need in mind? We create custom formulations tailored to your hair type, skin concerns, preferred scents, and desired consistency. Every order is made fresh.',
-                img: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=500&q=80',
+                img: '/ser2.jpg',
                 features: ['Personalized formulas', 'Choose your scent', 'Custom consistency', 'Made to order'],
                 price: 'Starting at $12',
                 icon: 'M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z',
@@ -41,7 +41,7 @@ export default function ServicesPage() {
               {
                 title: 'Gift Sets & Bundles',
                 desc: 'Perfect for birthdays, baby showers, holidays, or just because. We create beautifully packaged gift sets combining our best-loved products — a thoughtful natural gift.',
-                img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&q=80',
+                img: '/ser3.jpg',
                 features: ['Custom packaging', 'Mix & match products', 'Gift message included', 'Great for all occasions'],
                 price: 'Starting at $20',
                 icon: 'M12 8v13m0-13V6a4 4 0 00-4-4H5.45a4 4 0 00-3.955 3.566C1.44 6.21 1 7.527 1 9v2a2 2 0 002 2h1v-2h14v2h1a2 2 0 002-2V9c0-1.473-.44-2.79-1.495-3.434A4 4 0 0016.55 2H16a4 4 0 00-4 4v2z',
@@ -49,7 +49,7 @@ export default function ServicesPage() {
               {
                 title: 'Bulk & Wholesale Orders',
                 desc: 'Running a salon, boutique, or gifting event? We offer bulk pricing on our most popular products. Reach out to discuss quantities, pricing, and turnaround time.',
-                img: 'https://images.unsplash.com/photo-1598662779094-110c2bad80b5?w=500&q=80',
+                img: '/ser1.jpg',
                 features: ['Volume discounts', 'Flexible quantities', 'Business-friendly pricing', 'Reliable turnaround'],
                 price: 'Contact for pricing',
                 icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
