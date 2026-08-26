@@ -17,7 +17,10 @@ interface OrderEmailInput {
 
 export async function sendOrderNotification(order: OrderEmailInput) {
   const { GMAIL_USER, GMAIL_APP_PASSWORD, ORDER_NOTIFICATION_EMAIL } = process.env;
-  if (!GMAIL_USER || !GMAIL_APP_PASSWORD || !ORDER_NOTIFICATION_EMAIL) return;
+  if (!GMAIL_USER || !GMAIL_APP_PASSWORD || !ORDER_NOTIFICATION_EMAIL) {
+    console.error('Order notification email skipped: missing GMAIL_USER, GMAIL_APP_PASSWORD, or ORDER_NOTIFICATION_EMAIL env var.');
+    return;
+  }
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',

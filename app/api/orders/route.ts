@@ -42,7 +42,9 @@ export async function POST(req: NextRequest) {
     customer: parsed.data.customer,
     items: parsed.data.items,
     total,
-  }).catch((err) => console.error('Order notification email failed:', err));
+  })
+    .then(() => console.log(`Order notification email sent for order #${order._id.toString().slice(-6)}`))
+    .catch((err) => console.error(`Order notification email failed for order #${order._id.toString().slice(-6)}:`, err));
 
   return NextResponse.json(order, { status: 201 });
 }
