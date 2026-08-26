@@ -1,14 +1,22 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 
 export default function CheckoutPage() {
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice, clearCart, syncWithCatalog } = useCart();
   const [form, setForm] = useState({ name: '', phone: '', address: '' });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [orderId, setOrderId] = useState('');
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then((res) => res.json())
+      .then((data) => syncWithCatalog(data.map((p: { _id: string; name: string; price: number; variants?: { size: string; price: number }[] }) => ({ id: p._id, name: p.name, price: p.price, variants: p.variants ?? [] }))))
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount to reconcile stale localStorage prices with the live catalog
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -14,12 +14,20 @@ function cartKey(item: { productId: string; size?: string; scent?: string }) {
   return `${item.productId}::${item.size ?? ''}::${item.scent ?? ''}`;
 }
 
+interface CatalogProduct {
+  id: string;
+  name: string;
+  price: number;
+  variants: { size: string; price: number }[];
+}
+
 interface CartContextValue {
   items: CartItem[];
   addItem: (item: Omit<CartItem, 'qty'>, qty?: number) => void;
   removeItem: (productId: string, size?: string, scent?: string) => void;
   updateQty: (productId: string, qty: number, size?: string, scent?: string) => void;
   clearCart: () => void;
+  syncWithCatalog: (catalog: CatalogProduct[]) => void;
   totalItems: number;
   totalPrice: number;
 }
@@ -71,11 +79,28 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = () => setItems([]);
 
+  const syncWithCatalog = (catalog: CatalogProduct[]) => {
+    setItems((prev) =>
+      prev
+        .map((item) => {
+          const product = catalog.find((p) => p.id === item.productId);
+          if (!product) return null;
+          if (item.size) {
+            const variant = product.variants.find((v) => v.size === item.size);
+            if (!variant) return null;
+            return { ...item, name: product.name, price: variant.price };
+          }
+          return { ...item, name: product.name, price: product.price };
+        })
+        .filter((i): i is CartItem => i !== null)
+    );
+  };
+
   const totalItems = items.reduce((sum, i) => sum + i.qty, 0);
   const totalPrice = items.reduce((sum, i) => sum + i.price * i.qty, 0);
 
   return (
-    <CartContext.Provider value={{ items, addItem, removeItem, updateQty, clearCart, totalItems, totalPrice }}>
+    <CartContext.Provider value={{ items, addItem, removeItem, updateQty, clearCart, syncWithCatalog, totalItems, totalPrice }}>
       {children}
     </CartContext.Provider>
   );

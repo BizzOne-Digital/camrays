@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { auth } from '@/auth';
 import { connectDB } from '@/lib/mongodb';
 import Order from '@/models/Order';
+import { sendOrderNotification } from '@/lib/email';
 
 const OrderInput = z.object({
   customer: z.object({
@@ -35,6 +36,14 @@ export async function POST(req: NextRequest) {
 
   await connectDB();
   const order = await Order.create({ ...parsed.data, total });
+
+  sendOrderNotification({
+    orderId: order._id.toString(),
+    customer: parsed.data.customer,
+    items: parsed.data.items,
+    total,
+  }).catch((err) => console.error('Order notification email failed:', err));
+
   return NextResponse.json(order, { status: 201 });
 }
 

@@ -1,9 +1,18 @@
 'use client';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 
 export default function CartPage() {
-  const { items, removeItem, updateQty, totalPrice } = useCart();
+  const { items, removeItem, updateQty, totalPrice, syncWithCatalog } = useCart();
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then((res) => res.json())
+      .then((data) => syncWithCatalog(data.map((p: { _id: string; name: string; price: number; variants?: { size: string; price: number }[] }) => ({ id: p._id, name: p.name, price: p.price, variants: p.variants ?? [] }))))
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount to reconcile stale localStorage prices with the live catalog
+  }, []);
 
   return (
     <section style={{ padding: '160px 32px 100px', background: 'var(--warm-white)', minHeight: '70vh' }}>
