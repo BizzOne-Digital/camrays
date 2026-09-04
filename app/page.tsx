@@ -112,7 +112,7 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
-        <style>{`@media(max-width:768px){ section > div { grid-template-columns: 1fr !important; } .grandma-badge { width: 56px !important; height: 56px !important; bottom: 8px !important; right: 8px !important; padding: 4px !important; } .grandma-badge-text { font-size: 6px !important; } }`}</style>
+        <style>{`@media(max-width:768px){ section > div { grid-template-columns: 1fr !important; } .grandma-badge { width: 56px !important; height: 56px !important; bottom: -12px !important; right: -12px !important; padding: 4px !important; } .grandma-badge-text { font-size: 6px !important; } }`}</style>
       </section>
 
       {/* ====== BENEFITS SECTION ====== */}
