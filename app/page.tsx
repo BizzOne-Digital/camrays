@@ -87,7 +87,7 @@ export default async function HomePage() {
               <Image src="/grandmother.png" alt="Grandmother" width={300} height={300} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
             </div>
             {/* Badge overlay */}
-            <div style={{ position: 'absolute', bottom: '-20px', right: '-20px', width: '100px', height: '100px', borderRadius: '50%', background: 'var(--charcoal)', border: '3px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', padding: '12px' }}>
+            <div className="grandma-badge" style={{ position: 'absolute', bottom: '-20px', right: '-20px', width: '100px', height: '100px', borderRadius: '50%', background: 'var(--charcoal)', border: '3px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', padding: '12px' }}>
               <div style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold)', lineHeight: '1.3' }}>Grandma&apos;s<br/>Recipe</div>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
-        <style>{`@media(max-width:768px){ section > div { grid-template-columns: 1fr !important; } }`}</style>
+        <style>{`@media(max-width:768px){ section > div { grid-template-columns: 1fr !important; } .grandma-badge { position: static !important; margin: 16px auto 0 !important; } }`}</style>
       </section>
 
       {/* ====== BENEFITS SECTION ====== */}
