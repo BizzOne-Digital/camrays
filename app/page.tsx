@@ -88,7 +88,7 @@ export default async function HomePage() {
             </div>
             {/* Badge overlay */}
             <div className="grandma-badge" style={{ position: 'absolute', bottom: '-20px', right: '-20px', width: '100px', height: '100px', borderRadius: '50%', background: 'var(--charcoal)', border: '3px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', padding: '12px' }}>
-              <div style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold)', lineHeight: '1.3' }}>Grandma&apos;s<br/>Recipe</div>
+              <div className="grandma-badge-text" style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold)', lineHeight: '1.3' }}>Grandma&apos;s<br/>Recipe</div>
             </div>
           </div>
 
@@ -112,7 +112,7 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
-        <style>{`@media(max-width:768px){ section > div { grid-template-columns: 1fr !important; } .grandma-badge { bottom: -20px !important; right: auto !important; left: 25% !important; transform: translateX(-50%) !important; } }`}</style>
+        <style>{`@media(max-width:768px){ section > div { grid-template-columns: 1fr !important; } .grandma-badge { width: 56px !important; height: 56px !important; bottom: 8px !important; right: 8px !important; padding: 4px !important; } .grandma-badge-text { font-size: 6px !important; } }`}</style>
       </section>
 
       {/* ====== BENEFITS SECTION ====== */}
