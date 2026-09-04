@@ -23,6 +23,18 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Grandmother's Photo */}
+      <section style={{ padding: '80px 0', background: 'var(--warm-white)' }}>
+        <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 32px', textAlign: 'center' }}>
+          <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', aspectRatio: '1', maxWidth: '360px', margin: '0 auto' }}>
+            <Image src="/grandmother.png" alt="Grandmother" fill style={{ objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(139,26,26,0.85), rgba(139,26,26,0.1))', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '16px' }}>
+              <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '15px', fontWeight: '600', color: 'white', textAlign: 'center' }}>Grandma&apos;s Approved Recipe</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Values */}
       <section style={{ padding: '100px 0', background: 'var(--charcoal)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px' }}>
